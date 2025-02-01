@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .image-box {
+            width: 300px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid red;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            position: relative;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: red;
+            color: white;
+        }
+        #no {
+            background-color: white;
+            color: red;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-box" id="imageBox"></div>
+        <h1>Will you be my Valentine? 💖</h1>
+        <div class="buttons">
+            <button id="yes" onclick="alert('Yay! I love you! ❤️')">Yes</button>
+            <button id="no" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let moveDistance = 100;
+
+        function moveNoButton() {
+            let noButton = document.getElementById("no");
+            let currentLeft = parseFloat(noButton.style.left) || 0;
+            let currentTop = parseFloat(noButton.style.top) || 0;
+            let x = currentLeft + (Math.random() * moveDistance * 2 - moveDistance);
+            let y = currentTop + (Math.random() * moveDistance * 2 - moveDistance);
+            noButton.style.position = "relative";
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+            moveDistance = Math.max(50, moveDistance * 0.9); // Adjusts distance dynamically
+        }
+
+        function setBackgroundImage(imagePath) {
+            document.getElementById("imageBox").style.backgroundImage = "url('" + imagePath + "')";
+        }
+
+        setBackgroundImage('valentines.jpg');
+    </script>
+</body>
+</html>
